@@ -22,7 +22,7 @@ int main () {
      float b = max<float>(3.0, 10.0);
 }
 ```
-When we `make` this project, the compiler will see that we called max with an int one time, and float as another. We specified the type to use with <int> and <float>. It will create these two functions:
+When we `make` this project, the compiler will see that we called max with an int one time, and float as another. We specified the type to use with `<int>` and `<float>`. It will create these two functions:
 ```cpp
 // Figure 1.3:
 int max(int x, int y) { ...
