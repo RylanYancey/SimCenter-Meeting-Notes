@@ -80,4 +80,4 @@ public:
     Node<T> * root;
 };
 ```
-Using template<typename T> generates an error, since we use T inside the class. 
+Using `template<typename T>` generates an error, since we use T inside the class. 
