@@ -42,6 +42,41 @@ int main() {
 	Apple first = Apple { /*whatever*/ }; 
 	Apple second = Apple { /*whatever*/ };
 	
-	Apple betst = max<Apple>(first, second);
+	Apple best = max<Apple>(first, second);
 }
+```
+The compile is not able to generate `max` for the `Apple` struct, since Apple cannot be compared with >, (or any other comparator for that matter). This is because > is not implemented for the type. 
+```
+// Figure 2.2
+source/main.cpp: In instantiation of ‘T max(T, T) [with T = Apple]’:
+source/main.cpp:28:30:   required from here
+source/main.cpp:20:15: error: no match for ‘operator>’ (operand types are ‘Apple’ and ‘Apple’)
+   20 |     return (x > y)? x : y;
+      |            ~~~^~~~
+make: *** [makefile:82: bin/main.o] Error 1
+```
+If you wanted to use the Apple struct here, you would have to implement operator> for Apple.
+```cpp
+// Figure 2.3
+struct Apple {
+    string type;
+    float shine;
+    float radius;
+    friend bool operator>(const Apple& l, const Apple& r) {
+        return l.shine > r.shine;
+    }
+};
+
+Any time we want to use templates like this, it is good to specify in the documentation what needs to be implemented for the type. 
+
+## Class Templates
+You can create templates for classes too, with `template<class>`
+```cpp
+template<class T>
+class BinaryTree {
+public:
+    BinaryTree();
+	// Node is a struct
+    Node<T> * root;
+};
 ```
