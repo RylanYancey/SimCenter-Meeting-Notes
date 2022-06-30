@@ -89,10 +89,10 @@ Unlike Java / C# / and other object oriented languages, C++ does not support req
 C++ supports _declaring variables inside template types_.
 ```cpp
 template <typename T, int BufSize>
-class buffer_t {
+class buffer {
     T data[BufSize];
 }
 
-buffer_t<int, 100> buf; // 100 as template parameter
+buffer<int, 100> buf; // 100 as template parameter
 ```
 Here, we can use BufSize to declare our array, since BufSize is set at compile time, since template parameters are constants. 
