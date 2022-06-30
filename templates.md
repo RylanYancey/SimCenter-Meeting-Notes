@@ -85,3 +85,14 @@ public:
 	
 Unlike Java / C# / and other object oriented languages, C++ does not support requiring inheritance. An error message will be generated during  compilation if an incompatible type is used. Include type bounds in your documentation. 
 	
+## One more thing...
+C++ supports _declaring variables inside template types_.
+```cpp
+template <typename T, int BufSize>
+class buffer_t {
+    T data[BufSize];
+}
+
+buffer_t<int, 100> buf; // 100 as template parameter
+```
+Here, we can use BufSize to declare our array, since BufSize is set at compile time, since template parameters are constants. 
