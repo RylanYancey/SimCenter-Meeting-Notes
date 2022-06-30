@@ -66,7 +66,7 @@ struct Apple {
         return l.shine > r.shine;
     }
 };
-
+```
 Any time we want to use templates like this, it is good to specify in the documentation what needs to be implemented for the type. 
 
 ## Class Templates
@@ -80,3 +80,4 @@ public:
     Node<T> * root;
 };
 ```
+Using template<typename T> generates an error, since we use T inside the class. 
