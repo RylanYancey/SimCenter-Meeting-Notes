@@ -72,6 +72,7 @@ Any time we want to use templates like this, it is good to specify in the docume
 ## Class Templates
 You can create templates for classes too, with `template<class>`
 ```cpp
+// Figure 3.1:
 template<class T>
 class BinaryTree {
 public:
@@ -88,6 +89,7 @@ Unlike Java / C# / and other object oriented languages, C++ does not support req
 ## One more thing...
 C++ supports _declaring variables inside template types_.
 ```cpp
+// Figure 4.1:
 template <typename T, int BufSize>
 class buffer {
     T data[BufSize];
