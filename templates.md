@@ -80,4 +80,8 @@ public:
     Node<T> * root;
 };
 ```
-Using `template<typename T>` generates an error, since we use T inside the class. 
+
+## Requiring Inheritance in a Class Template
+	
+Unlike Java / C# / and other object oriented languages, C++ does not support requiring inheritance. An error message will be generated during  compilation if an incompatible type is used. Include type bounds in your documentation. 
+	
