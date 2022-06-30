@@ -86,6 +86,7 @@ public:
 	
 Unlike Java / C# / and other object oriented languages, C++ does not support requiring inheritance for a template. An error message will be generated during  compilation if an incompatible type is used. Include type bounds in your documentation. 
 ```java
+// Java code demonstrating template requirements in java
 class BinaryTree<K extends Comparable, T> { ... }
 ```
 We're not able to do something like this, where the K template requires an implementation of the `Comparable` Interface. 
