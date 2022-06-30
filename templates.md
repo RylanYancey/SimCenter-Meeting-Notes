@@ -10,6 +10,7 @@ Consider this snippet:
 // Figure 1:
 template<typename T>
 T max(T x, T y) {
+     // if x > y, return x, else, y 
      return (x > y)? x : y;
 }
 ```
@@ -31,13 +32,7 @@ float max(float x, float y) { ...
 ```
 You can see here that T was replaced with whatever was inside the < >. Some common examples of Templates types include `vectors` and `smart pointers`. 
 
-## Templates vs Generics
-
-
+## Issues with Templates
   
-
-  
-  
-  
-  
-  
+The keen-eyed among you may have noticed a fundamental problem with using templates like this. What if `T` is not comparable? For example, if we run this code:
+```cpp
