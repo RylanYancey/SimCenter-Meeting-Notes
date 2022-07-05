@@ -45,7 +45,7 @@ int main() {
 	Apple best = max<Apple>(first, second);
 }
 ```
-The compile is not able to generate `max` for the `Apple` struct, since Apple cannot be compared with >, (or any other comparator for that matter). This is because > is not implemented for the type. 
+The compiler is not able to generate `max` for the `Apple` struct, since Apple cannot be compared with >, (or any other comparator for that matter). This is because > is not implemented for the type. 
 ```
 // Figure 2.2
 source/main.cpp: In instantiation of ‘T max(T, T) [with T = Apple]’:
