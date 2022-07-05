@@ -18,8 +18,8 @@ If we wanted to use this function, we would call it this way:
 ```cpp
 // Figure 1.2:
 int main () {
-     int a   = max<int>(5, 9);
-     float b = max<float>(3.0, 10.0);
+     int a   = max<int>(5, 9); // returns 9 as int
+     float b = max<float>(3.0, 10.0); // returns 10.0 as float
 }
 ```
 When we `make` this project, the compiler will see that we called max with an int one time, and float as another. We specified the type to use with `<int>` and `<float>`. It will create these two functions:
