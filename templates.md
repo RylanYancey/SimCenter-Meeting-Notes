@@ -117,6 +117,22 @@ decltype(x+y) add(T x, U y)
 ```
 You will get a syntax error, since x+y is not known yet. you have to use the -> syntax. 
 	
+## Using Templates in Header / CPP Files
+Declaring Templates in header files and implementing them in CPP files is not very straightforward. To do this, you have to include the cpp file containing the implementation in the bottom of the header file. Example:
+```cpp
+//template.h
+template<typename T> T max(T x, T y);
+
+#include "template.cpp"
+```
+```cpp
+//template.cpp
+template<typename T> T max(T x, T y) {
+	return x > y ? x : y;
+}
+```
+Note: template.cpp should not `#include template.h`. Doing this will cause a recursive template error. 
+	
 ## One more thing...
 C++ supports _declaring variables inside template types_.
 ```cpp
