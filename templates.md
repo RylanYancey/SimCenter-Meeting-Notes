@@ -81,6 +81,8 @@ public:
     Node<T> * root;
 };
 ```
+Note: `template<class T>` and `template<typename T>` are interchangable, except for specific situations. 
+In this example, `template<class T>` is not required. `template<typename T>` works just as well. 
 
 ## Requiring Inheritance in a Class Template
 	
