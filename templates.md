@@ -91,6 +91,30 @@ class BinaryTree<K extends Comparable, T> { ... }
 ```
 We're not able to do something like this, where the K template requires an implementation of the `Comparable` Interface. 
 	
+## Decltype for making templates more elegent
+
+Infers return type from an expression. For example:
+```cpp
+template<typename R, typename T, typename U>
+R add(T x, U y) {
+    return x+y;
+}
+```
+Here, we have to use 3 generics for our function. This is verbose and can be more elegently done by inferring the return type:
+```cpp
+template<typename T, typename U>
+auto add2(T x, U y) -> decltype(x+y){
+    return x + y;
+}
+```
+Here, we are specifying the return type of the function to be the return type of x + y. For example, if x is double and y is float, then the return type will be double. (since downcasting a double to float would result in a loss of data) This way of declaring this generic means the end-user does not have to specify the return type R, which would be redundant. 
+
+Don't let the -> syntax confuse you. This is a specific to decltype, and informs `auto` which type it is. If you tried this:
+```cpp
+decltype(x+y) add(T x, U y)
+```
+You will get a syntax error, since x+y is not known yet. you have to use the -> syntax. 
+	
 ## One more thing...
 C++ supports _declaring variables inside template types_.
 ```cpp
