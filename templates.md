@@ -85,13 +85,8 @@ Note: `template<class T>` and `template<typename T>` are interchangable, except 
 In this example, `template<class T>` is not required. `template<typename T>` works just as well. 
 
 ## Requiring Inheritance in a Class Template
-	
-Unlike Java / C# / and other object oriented languages, C++ does not support requiring inheritance for a template. An error message will be generated during  compilation if an incompatible type is used. Include type bounds in your documentation. 
-```java
-// Java code demonstrating template requirements in java
-class BinaryTree<K extends Comparable, T> { ... }
-```
-We're not able to do something like this, where the K template requires an implementation of the `Comparable` Interface. 
+
+It is possible to require inheritance or other traits using the `Concepts` system, but I don't fully understand that yet. 
 	
 ## Decltype for making templates more elegent
 
