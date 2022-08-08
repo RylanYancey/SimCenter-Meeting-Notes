@@ -122,6 +122,6 @@ Once again, just focus on what's important. Here's what you should notice:
 1. we make a `call` to malloc to allocate the space. (remember, function calls aren't cheap.)
 2. There's alot more code for every element we want to move on to the array. 
 
-This is example is so much slower because we have to call malloc rather than just generating assembly code directly. Malloc is not a cheap function to call. Because the data is heap allocated, we have to do more work to figure out where it should be. 
+This example is so much slower because we have to call malloc rather than just generating assembly code directly. Malloc is not a cheap function to call. Because the data is heap allocated, we have to do more work to figure out where it should be. 
 
 Like we've said, Heap Allocation is so much slower because we have to figure out allocation at `runtime`, not `compile-time`. Allocating on the stack in this example is a `compile-time optomization`. 
