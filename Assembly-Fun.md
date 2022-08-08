@@ -125,3 +125,74 @@ Once again, just focus on what's important. Here's what you should notice:
 This example is so much slower because we have to call malloc rather than just generating assembly code directly. Malloc is not a cheap function to call. Because the data is heap allocated, we have to do more work to figure out where it should be. 
 
 Like we've said, Heap Allocation is so much slower because we have to figure out allocation at `runtime`, not `compile-time`. Allocating on the stack in this example is a `compile-time optomization`. 
+
+# Constexpr in Assembly
+
+Let's look at this example:
+```cpp
+// EXAMPLE 1:
+int multiply_function(int a, int b) {
+    return a * b;
+}
+
+// EXAMPLE 2:
+int constexpr multiply_constexpr(int a, int b) {
+    return a * b;
+}
+```
+Constexpr vs a regular function. Constexpr is faster. Let's look at the regulalr function in assembly:
+```cpp
+// EXAMPLE 1:
+int multiply_function(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    int n = multiply_function(5, 5);
+}
+```
+When we compile this example to assembly, our `main` looks like this:
+```asm
+main:
+.LFB1882:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	$5, %esi                   ; prepare operand
+	movl	$5, %edi                   ; prepare operand
+	call	_Z17multiply_functionii    ; call function
+	movl	%eax, -4(%rbp)             ; move result into n
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+```
+In this example, we have to call multiply_function. This involves having to do a `movl` (a "move") into the register to work with it in the function. Then, we can move the result into n. 
+
+This is the result of compiling constexpr into assembly:
+```asm
+main:
+.LFB1882:
+	.cfi_startproc
+	endbr64
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	$25, -4(%rbp)       ; move 25 into n
+	movl	$0, %eax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+```
+You can already see it's quite alot smaller. Rather than calling a function, the compiler evaluated `5 * 5 = 25`, and assigned the variable. It's another example of a `compile-time optomization`. 
+
+Inlining is a simliar concept, except we still have to execute the function. But, we *can* remove the need to move the data into the function, since we're just copying the function contents into it's calling function. 
