@@ -45,9 +45,9 @@ This is the assembly for Example 1: (native array, stack allocation)
 declare_stack_array():
      	push    rbp
         mov     rbp, rsp
-        mov     DWORD PTR [rbp-32], 1
-        mov     DWORD PTR [rbp-28], 2
-        mov     DWORD PTR [rbp-24], 3
+        mov     DWORD PTR [rbp-32], 1  ; <- move 1 into array
+        mov     DWORD PTR [rbp-28], 2  ; <- move 2 into array
+        mov     DWORD PTR [rbp-24], 3  ; and so on
         mov     DWORD PTR [rbp-20], 4
         mov     DWORD PTR [rbp-16], 5
         mov     DWORD PTR [rbp-12], 6
@@ -160,3 +160,7 @@ main:
 You can already see it's quite alot smaller. Rather than calling a function, the compiler evaluated `5 * 5 = 25`, and assigned the variable. It's another example of a `compile-time optomization`. 
 
 Inlining is a simliar concept, except we still have to execute the function. But, we *can* remove the need to move the data into the function, since we're just copying the function contents into it's calling function. 
+
+Lets look at the assembly for this function as inline:
+
+GCC did not want to cooperate so I can't show anything. Keep in mind `inline` is just a suggestion, and your code may not actually be inlined. 
